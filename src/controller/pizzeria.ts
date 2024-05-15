@@ -9,32 +9,12 @@ abstract class PizzaController {
 
     }
 
-    // static async createPizza(req: Request, res: Response) {
-    //     const { name, description, price, vegetarian, vegan, available } = req.body;
-    //     const [pizza, created] = await Pizza.findOrCreate({
-    //         where: { name },
-    //         defaults: {
-    //             name,
-    //             description,
-    //             price,
-    //             vegetarian,
-    //             vegan,
-    //             available
-    //         },
-    //     });
-
-    //     res.status(201).json(pizza);
-    // }
 
     static async createPizza(req: Request, res: Response) {
         const { name, description, price, vegetarian, vegan, available } = req.body;
 
-
-        if (!name || !description || !price || !vegetarian || !vegan || !available)
+        if (name === undefined || description === undefined || price === undefined || vegetarian === undefined || vegan === undefined || available === undefined)
             return res.status(400).json({ error: 'All data is required' });
-
-        // const stockINT = Number(stock);
-        // const costINT = Number(cost);
 
         const newPizza = (await Pizza.create({
             name,
@@ -49,16 +29,6 @@ abstract class PizzaController {
         res.status(201).json({ newPizza });
     }
 
-
-
-    // static async createPizza(req: Request, res: Response) {
-    //     const { name, description, price, vegetarian, vegan, available } = req.body;
-    //     const pizza = await Pizza.create({
-    //         name, description, price, vegetarian, vegan, available
-    //     }) as any;
-
-    //     res.status(201).json({ pizza });
-    // }
 }
 
 export default PizzaController;

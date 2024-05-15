@@ -1,15 +1,10 @@
-import sequelize, { DataTypes, Model } from './db';
+import sequelize, { DataTypes, Model } from './db/index';
 
 class Pizza extends Model { }
 
 Pizza.init(
     {
-        // id: {
-        //     type: DataTypes.INTEGER,
-        //     autoIncrement: true,
-        //     primaryKey: true,
 
-        // },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -38,7 +33,8 @@ Pizza.init(
     {
         sequelize,
         modelName: 'Pizza',
-        tableName: 'Pizzeria',
+        tableName: 'Pizzas',
+        timestamps: false
     }
 );
 

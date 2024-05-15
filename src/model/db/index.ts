@@ -1,17 +1,17 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
 
-const DB_PATH = 'postgres://ladlevit:1eT__M9qf4n9WO_iM2FFmXtM2zXCEDnu@isabelle.db.elephantsql.com/ladlevit'
+const sequelize = new Sequelize(
+    'postgres://ijdczxef:ohn5fAXrIPVKCEc636seus0oZU7c6MB_@silly.db.elephantsql.com/ijdczxef'
+);
 
-const sequelize = new Sequelize(DB_PATH);
 
-(async function () {
+async function testConnection() {
     try {
-        await sequelize.authenticate();
-        console.log('Connection has been establiched succeddfully.');
+        return await sequelize.authenticate();
     } catch (error) {
-        console.log('Unable to connect to the database:', error)
+        return new Error('Cannot establish connection to the server');
     }
-})();
+}
 
-export { DataTypes, Model };
+export { testConnection, DataTypes, Model };
 export default sequelize;

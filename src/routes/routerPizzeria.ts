@@ -1,12 +1,15 @@
 import { Router } from "express";
+import DB from '../controller/database';
+
 import PizzaController from "../controller/pizzeria";
-import DB from '../controller/db';
+
+
 
 const pizzeriaRouter = Router();
 
-pizzeriaRouter.get('/', DB.testeConnection);
-pizzeriaRouter.get('/', PizzaController.getAll);
-pizzeriaRouter.post('/', PizzaController.createPizza);
+pizzeriaRouter.get('/', DB.testConnection);
+pizzeriaRouter.get('/pizzeria', PizzaController.getAll);
+pizzeriaRouter.post('/pizzeria', PizzaController.createPizza);
 
 pizzeriaRouter.use('*', (_req, res) => {
     res.status(404).json({ message: 'Resource not found' });
